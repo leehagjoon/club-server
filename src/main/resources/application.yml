@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/club?characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+    password: k2winner*
+
+    devtools:
+      livereload:
+        enabled: true
+
+
+  jpa:
+    database: mysql
+#    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+#        show_sql: true
+#        format_sql: true
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 1MB
+      max-file-size: 100MB
+      max-request-size: 100MB
