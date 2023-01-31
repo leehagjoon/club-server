@@ -25,6 +25,12 @@ public class AcntCstmrRqModel {
 	
 	private String hpno;
 
+	private String addr;
+
+	private String addrDtl;
+
+	private String zip;
+
 	
 	
 	

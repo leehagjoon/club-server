@@ -50,7 +50,7 @@ public class AcntCstmrService {
             rq.setUserPswd(EncryptUtils.sha256Encrypt(rq.getUserPswd()));
             rq.setHpno(EncryptUtils.encrypt(rq.getHpno()));
             rq.setEmail(EncryptUtils.encrypt(rq.getEmail()));
-            rq.setBrthdyDate(rq.getBrthdyDate().replaceAll("-",""));
+//            rq.setBrthdyDate(rq.getBrthdyDate().replaceAll("-",""));
 
             ClubCstmrBas basEntity = this.savePtyCstmrBas(rq);
             if(basEntity == null){
@@ -95,11 +95,12 @@ public class AcntCstmrService {
         dtlEntity.setCstmrSno(basEntity.getCstmrSno());
         dtlEntity.setGenderCd(rq.getGenderCd());
         dtlEntity.setMemberName(rq.getMemberName());
-        dtlEntity.setBrthdyDate(DateUtils.stringToDate(rq.getBrthdyDate()));
+//        dtlEntity.setBrthdyDate(DateUtils.stringToDate(rq.getBrthdyDate()));
         dtlEntity.setEmail(rq.getEmail());
         dtlEntity.setHpno(rq.getHpno());
         dtlEntity.setUpdateDt(DateUtils.nowDate());
         dtlEntity.setUpdateUserId(rq.getUserId());
+        dtlEntity.setAddr(rq.getAddr());
 
         return clubCstmrDtlRepository.save(dtlEntity);
 
