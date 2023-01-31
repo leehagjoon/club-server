@@ -1,6 +1,6 @@
 package com.here.app.api.comn.response;
 
-import com.palnet.comn.code.RSErrorCode;
+import com.here.app.comn.code.RSErrorCode;
 import lombok.Data;
 
 @Data

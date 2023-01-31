@@ -1,6 +1,8 @@
 package com.here.app.api.acnt.cstmr.controller;
 
 import com.here.app.api.acnt.cstmr.model.AcntCstmrRqModel;
+import com.here.app.api.acnt.cstmr.model.AcntCstmrRsModel;
+import com.here.app.api.acnt.cstmr.service.AcntCstmrService;
 import com.here.app.api.comn.response.BasicResponse;
 import com.here.app.api.comn.response.SuccessResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,13 +27,13 @@ public class AcntCstmrController {
     @PostMapping(value = "/signup")
     public ResponseEntity<? extends BasicResponse> signup (@RequestBody AcntCstmrRqModel rq){
 
-        AcntCstmrRqModel result;
+        AcntCstmrRsModel result = null;
 
         try{
             result = service.signup(rq);
         }catch (Exception e){
 
         }
-        return ResponseEntity.ok().body(new SuccessResponse<AcntCstmrRqModel>(result));
+        return ResponseEntity.ok().body(new SuccessResponse<AcntCstmrRsModel>(result));
     }
 }

@@ -2,12 +2,15 @@ package com.here.app.api.acnt.cstmr.service;
 
 import com.here.app.api.acnt.cstmr.model.AcntCstmrRqModel;
 import com.here.app.api.acnt.cstmr.model.AcntCstmrRsModel;
+import com.here.app.comn.code.ErrorCode;
+import com.here.app.comn.exception.CustomException;
 import com.here.app.comn.utils.DateUtils;
 import com.here.app.comn.utils.EncryptUtils;
 import com.here.app.jpa.entity.ClubCstmrBas;
 import com.here.app.jpa.entity.ClubCstmrDtl;
 import com.here.app.jpa.repository.ClubCstmrBasRepository;
 import com.here.app.jpa.repository.ClubCstmrDtlRepository;
+import com.here.app.jpa.repository.ClubCstmrQueryRepository;
 import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,22 +27,48 @@ public class AcntCstmrService {
     @Autowired
     private ClubCstmrBasRepository clubCstmrBasRepository;
 
+    @Autowired
+    private ClubCstmrQueryRepository query;
+
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Transactional
-    public AcntCstmrRqModel signup(AcntCstmrRqModel rq) throws Exception{
+    public AcntCstmrRsModel signup(AcntCstmrRqModel rq) throws Exception{
 
+        AcntCstmrRsModel rs = new AcntCstmrRsModel();
+        boolean isUserIDFind = false;
         try{
+            isUserIDFind = query.findCstmrByUserId(rq.getUserId());
+            if(isUserIDFind){
+                rs.setErrCode(-1);
+                return rs;
+            }
+
             rq.setHpno(rq.getHpno().replaceAll("-",""));
+            // 처리 1. 민감정보 암호화 처리 (비밀번호, 이름 , 휴대폰번호, 이메일)
             rq.setUserPswd(EncryptUtils.sha256Encrypt(rq.getUserPswd()));
             rq.setHpno(EncryptUtils.encrypt(rq.getHpno()));
             rq.setEmail(EncryptUtils.encrypt(rq.getEmail()));
             rq.setBrthdyDate(rq.getBrthdyDate().replaceAll("-",""));
+
+            ClubCstmrBas basEntity = this.savePtyCstmrBas(rq);
+            if(basEntity == null){
+                throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR);
+            }
+            this.savePtyCstmrDtl(rq,basEntity);
+
+            if(basEntity != null){
+                rs.setErrCode(1);
+                rs.setLoginId(basEntity.getUserId());
+            }
         }catch (Exception e){
+            log.error("IGNORE : {} ", e);
+            rs.setErrCode(-2);
+            return rs;
 
         }
-    return rq;
+    return rs;
     }
 
 
