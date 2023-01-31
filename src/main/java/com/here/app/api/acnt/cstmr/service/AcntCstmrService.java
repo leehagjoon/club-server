@@ -91,6 +91,7 @@ public class AcntCstmrService {
 
     public ClubCstmrDtl savePtyCstmrDtl(AcntCstmrRqModel rq , ClubCstmrBas basEntity) throws Exception{
         ClubCstmrDtl dtlEntity = new ClubCstmrDtl();
+        dtlEntity.setPosition(rq.getPosition());
         dtlEntity.setCstmrSno(basEntity.getCstmrSno());
         dtlEntity.setGenderCd(rq.getGenderCd());
         dtlEntity.setMemberName(rq.getMemberName());
