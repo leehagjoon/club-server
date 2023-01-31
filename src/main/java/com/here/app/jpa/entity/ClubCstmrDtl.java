@@ -20,6 +20,9 @@ public class ClubCstmrDtl implements Serializable {
     @Column(name="ADDR_DTL")
     private String addrDtl;
 
+    @Column(name = "POSITION")
+    private String position;
+
     @Temporal(TemporalType.DATE)
     @Column(name="BRTHDY_DATE")
     private Date brthdyDate;
@@ -72,6 +75,10 @@ public class ClubCstmrDtl implements Serializable {
     public void setAddrDtl(String addrDtl) {
         this.addrDtl = addrDtl;
     }
+
+    public void setPosition(String position) {this.position = position;}
+
+    public String getPosition() {return this.position;}
 
     public Date getBrthdyDate() {
         return this.brthdyDate;

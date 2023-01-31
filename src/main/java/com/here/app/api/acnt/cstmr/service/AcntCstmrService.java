@@ -79,8 +79,7 @@ public class AcntCstmrService {
 
 
         ClubCstmrBas basEntity = new ClubCstmrBas();
-        basEntity.setCstmrDivCd(rq.getCstrmDivCd());
-        basEntity.setCstmrStatusCd(rq.getCstrmStatusCd());
+        basEntity.setCstmrStatusCd(rq.getCstrmrStatusCd());
         basEntity.setUserId(rq.getUserId());
         basEntity.setAuthId(rq.getAuthId());
         basEntity.setUserPswd(rq.getUserPswd());
@@ -92,6 +91,7 @@ public class AcntCstmrService {
 
     public ClubCstmrDtl savePtyCstmrDtl(AcntCstmrRqModel rq , ClubCstmrBas basEntity) throws Exception{
         ClubCstmrDtl dtlEntity = new ClubCstmrDtl();
+        dtlEntity.setPosition(rq.getPosition());
         dtlEntity.setCstmrSno(basEntity.getCstmrSno());
         dtlEntity.setGenderCd(rq.getGenderCd());
         dtlEntity.setMemberName(rq.getMemberName());

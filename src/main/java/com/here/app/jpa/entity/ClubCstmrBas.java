@@ -21,9 +21,6 @@ public class ClubCstmrBas implements Serializable {
     @Column(name="AUTH_ID")
     private String authId;
 
-    @Column(name="CSTMR_DIV_CD")
-    private String cstmrDivCd;
-
     @Column(name="CSTMR_STATUS_CD")
     private String cstmrStatusCd;
 

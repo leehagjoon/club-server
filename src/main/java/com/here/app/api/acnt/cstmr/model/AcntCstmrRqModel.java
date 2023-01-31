@@ -4,16 +4,16 @@ import lombok.Data;
 
 @Data
 public class AcntCstmrRqModel {
-
-	private String cstrmDivCd;
 	
-	private String cstrmStatusCd;
+	private String cstrmrStatusCd;
 	
 	private String userId;
 	
 	private String authId;
 	
 	private String userPswd;
+
+	private String position;
 
 	private String genderCd;
 	
