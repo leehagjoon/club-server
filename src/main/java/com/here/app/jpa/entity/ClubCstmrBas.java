@@ -37,4 +37,7 @@ public class ClubCstmrBas implements Serializable {
 
     @Column(name="USER_PSWD")
     private String userPswd;
+
+    @Column(name = "RFRSH_TOKEN")
+    private String rfrshToken;
 }

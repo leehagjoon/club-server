@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path: /
 
 spring:
   datasource:
@@ -12,12 +14,16 @@ spring:
       livereload:
         enabled: true
 
+  main:
+    allow:
+    allow-circular-references: true
+
 
   jpa:
     database: mysql
 #    show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
@@ -31,3 +37,5 @@ spring:
       file-size-threshold: 1MB
       max-file-size: 100MB
       max-request-size: 100MB
+
+

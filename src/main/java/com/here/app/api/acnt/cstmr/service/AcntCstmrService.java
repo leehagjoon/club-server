@@ -33,7 +33,6 @@ public class AcntCstmrService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Transactional
     public AcntCstmrRsModel signup(AcntCstmrRqModel rq) throws Exception{
 
         AcntCstmrRsModel rs = new AcntCstmrRsModel();
