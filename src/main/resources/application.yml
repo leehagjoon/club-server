@@ -16,11 +16,6 @@ spring:
   jackson:
     time-zone: Asia/Seoul
 
-  main:
-    allow:
-    allow-circular-references: true
-
-
   jpa:
     database: mysql
 #    show-sql: true
