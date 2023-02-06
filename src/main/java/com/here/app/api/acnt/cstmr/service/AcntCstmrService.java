@@ -83,6 +83,7 @@ public class AcntCstmrService {
         basEntity.setAuthId(rq.getAuthId());
         basEntity.setUserPswd(rq.getUserPswd());
         basEntity.setJoinDt(DateUtils.nowDate());
+        basEntity.setCstmrStatusCd("A");
 
         return clubCstmrBasRepository.save(basEntity);
 
@@ -100,6 +101,8 @@ public class AcntCstmrService {
         dtlEntity.setUpdateDt(DateUtils.nowDate());
         dtlEntity.setUpdateUserId(rq.getUserId());
         dtlEntity.setAddr(rq.getAddr());
+        dtlEntity.setAddrDtl(rq.getAddrDtl());
+        dtlEntity.setZip(rq.getZip());
 
         return clubCstmrDtlRepository.save(dtlEntity);
 

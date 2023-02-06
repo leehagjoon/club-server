@@ -1,7 +1,6 @@
 package com.here.app.config;
 
 
-
 import com.here.app.api.acnt.jwt.filter.JwtAuthenticationEntryPoint;
 import com.here.app.api.acnt.jwt.filter.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
-
+	
 	private final String[] PERMITTED_URL = {
 			"/api/acnt/**",
 	};
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		// configure AuthenticationManager so that it knows from where to load
@@ -61,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		httpSecurity.csrf().disable()
+		httpSecurity.httpBasic().disable()
+				.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
@@ -76,6 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
-
-
+	
+	
 }

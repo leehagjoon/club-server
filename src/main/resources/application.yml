@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
   servlet:
     context-path: /
 
@@ -13,6 +13,8 @@ spring:
     devtools:
       livereload:
         enabled: true
+  jackson:
+    time-zone: Asia/Seoul
 
   main:
     allow:
@@ -23,7 +25,7 @@ spring:
     database: mysql
 #    show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
