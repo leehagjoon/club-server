@@ -36,9 +36,6 @@ public class JwtUserModel implements UserDetails {
 	    @Column(name = "CSTMR_STATUS_CD")
 	    private String cstmrStatusCd;
 
-		@Transient
-		private List<JwtGroupModel> group;
-
 	  
 	    // 사용자의 권한을 콜렉션 형태로 반환
 	    // 단, 클래스 자료형은 GrantedAuthority를 구현해야함

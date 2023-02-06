@@ -12,8 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ClubCstmrBasRepository extends JpaRepository<ClubCstmrBas,Integer> {
 
-    Optional<JwtUserModel> findByUserId(String userId);
-
     @Query("select c from ClubCstmrBas c " + "where c.cstmrSno = :cstmrSno")
     ClubCstmrBas findByUserID(@Param("cstmrSno") int cstmrSno);
+
 }
