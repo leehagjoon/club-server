@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 //        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 //    }
     private final String[] PERMITTED_URL = {
-            "api/acnt/**",
+            "/api/acnt/**",
 };
     @Bean
     public AuthenticationProvider authenticationProvider(){
