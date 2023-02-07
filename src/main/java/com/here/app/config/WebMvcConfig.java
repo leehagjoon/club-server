@@ -53,34 +53,11 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	 @Override
 	 public void addCorsMappings(CorsRegistry registry) {
 		 //임시로 크로스오리진 전체를 품
-		 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
+		 registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE","OPTIONS","HEAD","PATCH");
 		 
 	   
 	 }
-	 
-//
-//	@Bean
-//	public HttpMessageConverter escapingConverter() {
-//		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-//		builder.simpleDateFormat(dateTimeFormat);
-//		builder.serializers(new LocalTimeSerializer(DateTimeFormatter.ofPattern(timeFormat)));
-//		builder.serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)));
-//		builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
-//
-//		builder.deserializers(new LocalTimeDeserializer(DateTimeFormatter.ofPattern(timeFormat)));
-//		builder.deserializers(new LocalDateDeserializer(DateTimeFormatter.ofPattern(dateFormat)));
-//		builder.deserializers(new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
-//		builder.featuresToDisable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-//		builder.featuresToDisable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
-//		builder.featuresToDisable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-//
-//		ObjectMapper objectMapper = builder.build();
-////		objectMapper.getFactory().setCharacterEscapes(new HTMLCharacterEscapes());
-//		MappingJackson2HttpMessageConverter escapingConverter = new MappingJackson2HttpMessageConverter();
-//		escapingConverter.setObjectMapper(objectMapper);
-//
-//		return escapingConverter;
-//	}
+
 	
 	@Override
     public void addFormatters(FormatterRegistry registry) {

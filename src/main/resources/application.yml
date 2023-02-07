@@ -10,9 +10,11 @@ spring:
     username: root
     password: k2winner*
 
+  main:
     devtools:
       livereload:
         enabled: true
+    allow-circular-references: true
   jackson:
     time-zone: Asia/Seoul
 

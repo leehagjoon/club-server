@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //프론트엔드에서 매순간 Request를 요청 할 때마다 이 필터를 먼저 거침
-@Component
 @Log4j2
+@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
