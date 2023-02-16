@@ -7,6 +7,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,9 +23,9 @@ public class JwtTokenUtil implements Serializable {
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60; //5시간
     public static final long JWT_REFRESH_TOKEN_VALIDITY = 21 * 24 * 60 * 60; //21일
 
-    @Value("jwtsecretkey")
+    @Value("${spring.jwt.secret}")
     private String secret;
-    @Value("here")
+    @Value("${spring.jwt.prefix}")
     private String JWT_PREFIX;
 
     //retrieve username from jwt token
@@ -90,5 +94,28 @@ public class JwtTokenUtil implements Serializable {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+    public String getUserIdByToken() {
+        HttpServletRequest rq = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String token = rq.getHeader("Authorization");
+
+        if(token == null || "".equals(token)) return null;
+
+        token = token.substring(JWT_PREFIX.length()).trim();
+        String userId = getUsernameFromToken(token);
+
+        return userId;
+    }
+    public Integer getCstmrSnoByToken() {
+        HttpServletRequest rq = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String token = rq.getHeader("Authorization");
+
+        if(token == null || "".equals(token)) return null;
+
+        token = token.substring(JWT_PREFIX.length()).trim();
+        Claims payload = getAllClaimsFromToken(token);
+        Integer cstmrSno = payload.get("cstmrSno",Integer.class);
+
+        return cstmrSno;
     }
 }

@@ -30,7 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Value("here")
+    @Value("${spring.jwt.prefix}")
     private String JWT_PREFIX;
 
     @Override
